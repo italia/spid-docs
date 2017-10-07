@@ -1,0 +1,67 @@
+<SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
+    xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config"
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" clockSkew="180">
+
+    <ApplicationDefaults entityID="https://spid.umbros.it"
+        REMOTE_USER="eppn persistent-id targeted-id" signing="true"
+        signingAlg="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" encryption="false"
+        authnContextClassRef="https://www.spid.gov.it/SpidL1" authnContextComparison="minimum"
+        NameIDFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:transient">
+
+        <Sessions lifetime="28800" timeout="3600" relayState="ss:mem" handlerURL="/iam"
+            checkAddress="false" handlerSSL="true" cookieProps="https">
+
+            <!-- Login -->
+            <SessionInitiator type="SAML2" Location="/Login" isDefault="true"
+                entityID="https://spid.umbros.it"
+                outgoingBinding="urn:oasis:names:tc:SAML:profiles:SSO:request-init"
+                isPassive="false"/>
+            
+            <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                Location="/SAML2/POST" index="0"/>
+
+            <!-- Logout -->
+            <LogoutInitiator type="Chaining" Location="/Logout">
+                <LogoutInitiator type="SAML2"
+                    outgoingBindings="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                    signing="true"/>
+                <LogoutInitiator type="Local" signing="true"/>
+            </LogoutInitiator>
+            
+            <md:SingleLogoutService Location="/SLO/POST"
+                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/>
+            <md:SingleLogoutService Location="/SLO/Redirect"
+                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"/>
+            
+            <!-- Handler -->
+            <Handler type="Status" Location="/Status" acl="127.0.0.1 ::1"/>
+            <Handler type="Session" Location="/Session" showAttributeValues="true"/>
+
+        </Sessions>
+
+        <!-- Error page settings -->
+        <Errors supportContact="rosini@agid.gov.it" helpLocation="/about.html"
+            styleSheet="/shibboleth-sp/main.css"/>
+
+        <!-- SPID Test Environment IdentityServer Metadata -->
+        <MetadataProvider type="XML" validate="true" file="metadata/spid-testenv-identityprovider-metadata.xml" id="https://idp.spid.gov.it"/>
+
+        <!-- Attributes -->
+        <AttributeExtractor type="XML" validate="true" reloadChanges="true" path="attribute-map.xml"/>
+        <AttributeResolver type="Query" subjectMatch="true"/>
+        <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
+
+        <!-- Assertion signing cert -->
+        <CredentialResolver type="File" key="certs/sp-cert.key" certificate="certs/sp-cert.crt" use="signing"/>
+    
+    </ApplicationDefaults>
+
+    <!-- Security policies -->
+    <SecurityPolicyProvider type="XML" validate="true" path="security-policy.xml"/>
+
+    <!-- Protocols and binding -->
+    <ProtocolProvider type="XML" validate="true" reloadChanges="true" path="protocols.xml"/>
+
+</SPConfig>
