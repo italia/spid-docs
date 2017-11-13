@@ -23,7 +23,7 @@ SPID OpenID (soon available!)
 [Installazione di un sp con PhpSimpleSaml](https://github.com/italia/spid-docs/blob/master/pages/spid-simplesamlphp-sp.md)
 ----------------------------------------
 
-[Architetture di sistemi implementati con SPID Saml](https://github.com/italia/spid-docs/blob/master/pages/spid-architetture-sistemi.md)
+[Architetture di sistemi implementati con SPID Saml](https://github.com/italia/spid-docs/blob/master/pages/spid-saml-architetture-sistemi.md)
 ----------------------------------------------------
 
 [Documentazione](https://github.com/italia/spid-docs/blob/master/pages/documentazione-e-utilita.md)
