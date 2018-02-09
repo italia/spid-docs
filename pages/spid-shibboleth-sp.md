@@ -171,8 +171,7 @@ sudo systemctl enable shibd.service
 ```
 
 Copiare i file xml di configurazione di Shibbolet e configurare shibboleth2.xml
-1. [shibboleth.xml](https://github.com/umbros/spid-docs/blob/master/resources/shibboleth2.xml)
-2. [attribute_map.xml](https://github.com/umbros/spid-docs/blob/master/resources/attribute-map.xml)
+[SPID SP Shibboleth](https://github.com/italia/spid-sp-shibboleth)
 
 Sul file shibboleth2.xml allegato è riportata la configurazione dell'IDP di test, per aggiungere gli IDP di produzione di SPID, scaricare i metadata attraverso l'invocazione dell'api del Registro SPID
 ```
