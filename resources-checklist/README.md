@@ -62,6 +62,7 @@ Questa tabella va inclusa nei README di tutti i componenti SPID al fine di censi
 |verification of `Audience`|?|
 |parsing of Response with no `Assertion` (authentication/query failure)|?|
 |parsing of failure `StatusCode` (Requester/Responder)|?|
+|verification of `RelayState` (saml-bindings-2.0-os 3.5.3)|?|
 |**Response/Assertion parsing for SSO (1.2.1, 1.2.2.2, 1.3.1):**||
 |parsing of `NameID`|?|
 |parsing of `AuthnContextClassRef` (SPID level)|?|
