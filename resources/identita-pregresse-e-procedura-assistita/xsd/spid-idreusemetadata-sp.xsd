@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:md="http://spid.gov.it/prevProfiles/metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+  targetNamespace="http://spid.gov.it/prevProfiles/metadata" version="1.0">
+
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+    schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
+
+  <xs:element name="IdReuseDescriptor" type="md:idReuseDescriptor"/>
+  <xs:complexType name="serviceProvider">
+    <xs:sequence>
+      <xs:element name="spCode" type="xs:string"/>
+      <xs:element name="spName" type="xs:string"/>
+      <xs:element name="spInfoPage" type="xs:string"/>
+      <xs:element name="spEndpointResult" type="xs:string"/>
+      <xs:element name="spSigningCert" type="xs:string"/>
+      <xs:element name="spEncryptionCert" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="info">
+    <xs:sequence>
+      <xs:element name="idReuseInfoPage" type="xs:string"/>
+      <xs:element name="idReuseStartDate" type="xs:dateTime"/>
+      <xs:element name="idReuseEndDate" type="xs:dateTime"/>
+      <xs:element name="idReuseProfileType" type="md:idReuseProfileType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="idReuseDescriptor">
+    <xs:sequence>
+      <xs:element ref="ds:Signature" minOccurs="0"/>
+      <xs:element name="info" type="md:info"/>
+      <xs:element name="serviceProvider" type="md:serviceProvider"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="idReuseProfileType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="notverified"/>
+      <xs:enumeration value="verified"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

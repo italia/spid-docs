@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:md="http://spid.gov.it/prevProfiles/metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+  targetNamespace="http://spid.gov.it/prevProfiles/metadata" version="1.0">
+
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+    schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
+
+  <xs:element name="IdReuseDescriptor" type="md:idReuseDescriptor"/>
+
+
+  <xs:complexType name="identityProvider">
+    <xs:sequence>
+      <xs:element name="idpCode" type="xs:string"/>
+      <xs:element name="idpName" type="xs:string"/>
+      <xs:element name="idpInfoPage" type="xs:string"/>
+      <xs:element name="idpEndpointResponse" type="xs:string"/>
+      <xs:element name="idpSigningCert" type="xs:string"/>
+      <xs:element name="idpEncryptionCert" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="identityProviders">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="identityProvider" type="md:identityProvider"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="idReuseDescriptor">
+    <xs:sequence>
+      <xs:element ref="ds:Signature" minOccurs="0"/>
+      <xs:element name="identityProviders" type="md:identityProviders"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required"/>
+  </xs:complexType>
+
+</xs:schema>

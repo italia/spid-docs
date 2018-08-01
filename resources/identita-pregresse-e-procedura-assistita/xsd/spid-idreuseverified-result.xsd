@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:md="http://spid.gov.it/spIdentity/verified/result"
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+  targetNamespace="http://spid.gov.it/spIdentity/verified/result" version="1.0">
+
+
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+    schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
+  <xs:element name="SpIdentity" type="md:spVerifiedIndentity"/>
+
+  <xs:complexType name="spVerifiedIndentity">
+    <xs:sequence>
+      <xs:element ref="ds:Signature" minOccurs="0"/>
+      <xs:element name="idpCode" type="xs:string"/>
+      <xs:element name="responseID" type="xs:string"/>
+      <xs:element name="result" type="xs:string"/>
+      <xs:element name="fiscalCode" type="xs:string"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="familyName" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:schema>
