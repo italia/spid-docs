@@ -35,6 +35,7 @@ Questa tabella va inclusa nei README di tutti i componenti SPID al fine di censi
 |:---|:---|
 |**Metadata:**||
 |parsing of IdP XML metadata (1.2.2.4)|?|
+|support for multiple signing certificates in IdP XML metadata (1.2.2.4)|?|
 |parsing of AA XML metadata (2.2.4)|?|
 |SP XML metadata generation (1.3.2)|?|
 |**AuthnRequest generation (1.2.2.1):**||
