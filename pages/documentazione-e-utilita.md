@@ -4,8 +4,7 @@ Documentazione e utilità
 Documentazione
 --------------
 
-- [Documentazione SPID](http://www.agid.gov.it/agenda-digitale/infrastrutture-architetture/spid)
-- [Regole tecniche beta](https://spid-regole-tecniche.readthedocs.io/en/latest/)
+- [Documentazione SPID](https://docs.italia.it/italia/spid/spid-regole-tecniche)
 
 - [SAML for Developers](https://github.com/jch/saml/blob/master/README.md)
 - [Technical Overview](https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf)
